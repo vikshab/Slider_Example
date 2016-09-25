@@ -20,22 +20,8 @@
       margin-right: 100px;
       margin-top: 50px;
       text-align: center;
-    }
-
-    .slide1 {
-      background: url("slide1.jpg") no-repeat center center fixed;
-    }
-
-    .slide2 {
-      background: url("slide2.jpg") no-repeat center center fixed;
-    }
-
-    .slide3 {
-      background: url("slide3.jpg") no-repeat center center fixed;
-    }
-
-    .slide4 {
-      background: url("slide4.jpg") no-repeat center center fixed;
+      background: url("slide1.jpg");
+      background-size: cover;
     }
 
     .arrow {
@@ -127,11 +113,11 @@
         }
 
         if (count >= 0) {
-          current.className = "carousel " + array[count];
+          current.style.backgroundImage = "url(" + array[count] + ".jpg)";
         }
 
         if (count < 0) {
-          current.className = "carousel " + array[array.length - Math.abs(count)];
+          current.style.backgroundImage = "url(" + array[array.length - Math.abs(count)] + ".jpg)";
         }
       }
     </script>

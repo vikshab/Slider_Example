@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Slider</title>
+  </head>
+  <style>
+    body {
+      background-color: white;
+    }
+
+    h1 {
+      color: white;
+    }
+
+    .carousel {
+      width: 1200px;
+      height: 600px;
+      margin-left: 100px;
+      margin-right: 100px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .slide1 {
+      background: url("slide1.jpg") no-repeat center center fixed;
+    }
+
+    .slide2 {
+      background: url("slide2.jpg") no-repeat center center fixed;
+    }
+
+    .slide3 {
+      background: url("slide3.jpg") no-repeat center center fixed;
+    }
+
+    .slide4 {
+      background: url("slide4.jpg") no-repeat center center fixed;
+    }
+
+    .arrow {
+      cursor: pointer;
+      position: absolute;
+      font-size: 60px;
+      margin-top: -300px;
+      color: white;
+    }
+
+    #right {
+      right: 150px;
+    }
+
+    #left {
+      left: 150px;
+    }
+
+    .circles {
+      padding-top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      display: inline-block;
+      border: solid 2px black;
+    }
+
+    .current {
+      background-color: grey;
+    }
+
+  </style>
+  <body>
+    <div class="carousel slide1" id="slide">
+      <em><h1>Simple slide example</h1></em>
+    </div>
+    <div class="arrow" id="left">&#10094;</div>
+    <div class="arrow" id="right">&#10095;</div>
+
+    <div class="circles">
+      <div id="slide1" class="circle current">
+      </div>
+      <div id="slide2" class="circle">
+      </div>
+      <div id="slide3" class="circle">
+      </div>
+      <div id="slide4" class="circle">
+      </div>
+    </div>
+    <script>
+      var count = 0;
+      var right = document.getElementById("right");
+      var left = document.getElementById("left");
+      var current = document.getElementById("slide");
+      var array = ["slide1", "slide2", "slide3", "slide4"];
+
+      right.addEventListener('click', function() {
+        count ++;
+        if (count >= array.length ) {
+          count = 0;
+        }
+        slide(count, array)
+      }, false);
+
+      left.addEventListener('click', function() {
+        count --;
+        if (Math.abs(count) >= array.length ) {
+          count = 0;
+        }
+        slide(count, array)
+      }, false);
+
+      function slide(count, array) {
+        for(var i = 0; i < array.length; i++) {
+          if (Math.abs(count) != i && i != (array.length - Math.abs(count))){
+            document.getElementById(array[i]).className = "circle";
+          } else if (Math.abs(count) == i) {
+            if(count >= 0) {
+              document.getElementById(array[i]).className = "circle current";
+            } else {
+              document.getElementById(array[array.length - i]).className = "circle current";
+            }
+          }
+        }
+
+        if (count >= 0) {
+          current.className = "carousel " + array[count];
+        }
+
+        if (count < 0) {
+          current.className = "carousel " + array[array.length - Math.abs(count)];
+        }
+      }
+    </script>
+  </body>
+</html>
